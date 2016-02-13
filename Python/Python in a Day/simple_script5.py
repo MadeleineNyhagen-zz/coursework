@@ -1,3 +1,6 @@
+# I came up with my own list of epic programmers, but this code is
+# copied directly from Python in a Day 
+
 # create the list of epic programmers
 epic_programmer_list = ["Ada Lovelace",
                         "Margaret Hamilton",
@@ -6,19 +9,19 @@ epic_programmer_list = ["Ada Lovelace",
                         "Adele Goldstine"]
 
 # print to console
-print "An epic programmer: " + epic_programmer_list[0]
-
-print "An epic programmer: " + epic_programmer_list[0]
-print "An epic programmer: " + epic_programmer_list[1]
-print "An epic programmer: " + epic_programmer_list[2]
-print "An epic programmer: " + epic_programmer_list[3]
-print "An epic programmer: " + epic_programmer_list[4]
+##print "An epic programmer: " + epic_programmer_list[0]
+##
+##print "An epic programmer: " + epic_programmer_list[0]
+##print "An epic programmer: " + epic_programmer_list[1]
+##print "An epic programmer: " + epic_programmer_list[2]
+##print "An epic programmer: " + epic_programmer_list[3]
+##print "An epic programmer: " + epic_programmer_list[4]
 
 # add myself to the end of the list
 epic_programmer_list.append("Me")
 
 # add this line to show myself in the console
-print "An epic programmer: " + epic_programmer_list[5]
+# print "An epic programmer: " + epic_programmer_list[5]
 
 # looping through each item in epic_programmer_list
 for programmer in epic_programmer_list:
