@@ -34,7 +34,7 @@ def mainTwo(): # setting multiple choices with elif
         print('v is some other thing')
     print()
 
-def mainThree():
+def mainThree(): # conditional expressions
     a, b = 0, 1
     if a < b: # this is a way of doing this
         c = 'this is true'
@@ -42,6 +42,7 @@ def mainThree():
         c = 'this is not true'
 
     d = 'this is true' if a < b else 'this is not true' # this is an easier way
+    # aka a conditional expression
 
     print(c)
     print(d)
