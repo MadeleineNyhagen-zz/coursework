@@ -20,7 +20,7 @@ def main():
     for c in s:
         print(c, end='')
     else:
-        print('else') # to print 'else' once 'for' action is complete
+        print('else') # to print 'else' once 'for' action is complete/false
 
     print()
 
