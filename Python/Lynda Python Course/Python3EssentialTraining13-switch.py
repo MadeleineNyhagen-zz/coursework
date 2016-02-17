@@ -12,9 +12,10 @@ def main():
         five = 'fifth',
     )
     v = 'three'
-    print(choices[v])
+    print(choices[v]) # this will throw an error if v isn't in the dictionary
     z = 'nine'
-    print(choices.get(z, 'other'))
+    print(choices.get(z, 'other')) # this catches that error and returns
+    # something of our choice, in this case 'other'
     
 
 if __name__ == "__main__": main()
