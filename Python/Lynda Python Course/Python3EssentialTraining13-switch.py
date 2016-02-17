@@ -4,6 +4,17 @@
 # Copyright 2010 The BearHeart Group, LLC
 
 def main():
-    print('this is the switch.py file')
+    choices = dict(
+        one = 'first',
+        two = 'second',
+        three = 'third',
+        four = 'fourth',
+        five = 'fifth',
+    )
+    v = 'three'
+    print(choices[v])
+    z = 'nine'
+    print(choices.get(z, 'other'))
+    
 
 if __name__ == "__main__": main()

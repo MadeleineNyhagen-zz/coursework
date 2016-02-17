@@ -32,9 +32,20 @@ def mainTwo(): # setting multiple choices with elif
         print('v is three')
     else:
         print('v is some other thing')
+    print()
 
 def mainThree():
-    
+    a, b = 0, 1
+    if a < b: # this is a way of doing this
+        c = 'this is true'
+    else:
+        c = 'this is not true'
+
+    d = 'this is true' if a < b else 'this is not true' # this is an easier way
+
+    print(c)
+    print(d)
+
 
 
 if __name__ == "__main__": main()
