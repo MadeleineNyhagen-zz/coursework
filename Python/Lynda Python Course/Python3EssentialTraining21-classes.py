@@ -42,6 +42,7 @@ def main():
     
     daffy = DuckTwo()
     print(daffy.get_color())
+    print()
     daffy.set_color('black')
     print(daffy.get_color())
 
