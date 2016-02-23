@@ -14,9 +14,16 @@ class Duck:
     def walk(self):
         print('Walks like a duck.', self._v)
 
-class DuckTwo:
-    def __init__(self, color = 'white'):
-        self._color = color
+class DuckTwo: #using object data: accessor methods
+
+##    def __init__(self, color = 'white'):
+##        self._color = color
+##        print('Another kind of duck is born.')
+
+    def __init__(self, **kwargs):
+        
+        # self._color = kwargs.get('color','white')
+        self.variables = kwargs
     
     def quack(self):
         print('Quaaack!')
@@ -24,27 +31,46 @@ class DuckTwo:
     def walk(self):
         print('Walks like a duck.')
 
-    def set_color(self, color):
-        self._color = color
+##    def set_color(self, color): # one way to set/get the object's color
+##        self._color = color
+##
+##    def get_color(self):
+##        return self._color
 
-    def get_color(self):
-        return self._color
+##    def set_color(self, color): # another way to do this
+##        self.variables['color'] = color
+##
+##    def get_color(self):
+##        return self.variables.get('color', None)
+
+    def set_variable(self, k, v): # a better way to do this (predicated on using a dictionary,
+        # see above self.variables
+        self.variables[k] = v
+
+    def get_variable(self, k):
+        return self.variables.get(k, None)
     
 
 def main():
     donald = Duck()
     donald.quack()
     donald.walk()
-    
-    howard = Duck(131)
-    howard.quack()
-    howard.walk()
-    
-    daffy = DuckTwo()
-    print(daffy.get_color())
     print()
-    daffy.set_color('black')
-    print(daffy.get_color())
+    
+    daffy = Duck(131)
+    daffy.quack()
+    daffy.walk()
+    print()
+    
+##    howard = DuckTwo()
+##    print(howard.get_color())
+##    howard.set_color('black')
+    howard = DuckTwo(color = 'blue')
+##    print(howard.get_color())
+    howard.set_variable('feet', '2')
+    print(howard.get_variable('color'))
+    print(howard.get_variable('feet'))
+
 
     
 
