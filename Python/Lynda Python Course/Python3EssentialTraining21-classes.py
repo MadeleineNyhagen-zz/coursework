@@ -51,27 +51,57 @@ class DuckTwo: #using object data: accessor methods
         return self.variables.get(k, None)
     
 
-def main():
-    donald = Duck()
-    donald.quack()
-    donald.walk()
-    print()
-    
-    daffy = Duck(131)
-    daffy.quack()
-    daffy.walk()
-    print()
+##def main():
+##    donald = Duck()
+##    donald.quack()
+##    donald.walk()
+##    print()
+##    
+##    daffy = Duck(131)
+##    daffy.quack()
+##    daffy.walk()
+##    print()
+
     
 ##    howard = DuckTwo()
 ##    print(howard.get_color())
 ##    howard.set_color('black')
-    howard = DuckTwo(color = 'blue')
-##    print(howard.get_color())
-    howard.set_variable('feet', '2')
-    print(howard.get_variable('color'))
-    print(howard.get_variable('feet'))
+##    howard = DuckTwo(color = 'blue')
+####    print(howard.get_color())
+##    howard.set_variable('feet', '2')
+##    print(howard.get_variable('color'))
+##    print(howard.get_variable('feet'))
 
+
+class Animal:
+    def talk(self): print('I have something to say!')
+    def walk(self): print('Hey! I''m walkin'' here!')
+    def clothes(self): print('Ihave nice clothes.')
 
     
+class DuckThree(Animal):
+            
+    def quack(self):
+        print('Quaaack!')
 
-if __name__ == "__main__": main()
+    def walk(self): # overides the function of the same name in the parent class
+        super().walk() # to access the function walk from the parent class
+        print('Walks like a duck.')
+
+class Dog(Animal):
+    def clothes(self):
+        print('I have brown and white fur.')
+
+def mainTwo():
+    donald = DuckThree()
+    donald.talk()
+    donald.quack()
+    donald.walk()
+
+    fido = Dog()
+    fido.walk()
+    fido.clothes()
+    
+
+# if __name__ == "__main__": main()
+if __name__ == "__main__": mainTwo()
