@@ -74,8 +74,39 @@ def main():
 
     # from the third video on containers:
 
-    d = {'one': 1, 'two': 2, 'three': 3}
+    d = {'one': 1, 'two': 2, 'three': 3} # creates a dictionary
     print(d)
+
+    d2 = dict(one = 1, two = 2, three = 3) # this does the exact same as above, but is easier to type
+    print(d2)
+    print(type(d), type(d2))
+
+    d3 = dict(four = 4, five = 5, six = 6)
+    print(d3)
+
+    d4 = dict(one = 1, two = 2, three = 3, **d3)
+    print(d4)
+
+    print('four' in d3)
+    print('three' in d3)
+
+    for k in d4: print(k)
+    for k, v in d4.items(): print(k, v)
+
+    print(d4['three']) # returns the value associated with the 'three' key
+    # print(d3['three']) will raise an exception, because d3 doesn't have a 'three'
+    print(d3.get('three')) # will instead return 'None' if there is no match
+    print(d4.get('three')) # returns the value associated with 'three'
+    print(d3.get('three', 'not found')) # returns 'not found' instead of 'None' if 'three' isn't found in the dictionary
+
+    del d3['four'] # deletes 'four' and its associated value from the dictionary
+    print(d3)
+    print(d3.pop('five')) # pops 'five' and its associated value from the dictionary
+    print(d3)
+
+    # from the fourth video on containers
+    
+    
 
     
 
