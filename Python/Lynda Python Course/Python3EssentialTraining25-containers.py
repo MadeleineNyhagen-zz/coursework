@@ -106,7 +106,7 @@ def main():
 
     # from the fourth video on containers
 
-    # reading a utf-8 file
+    # reading a utf-8 file using a byte array
 
     fin = open('utf8.txt', 'r', encoding = 'utf_8')
     fout = open('utf8.html', 'w')
@@ -122,9 +122,6 @@ def main():
     print(outstr, file = fout)
     print(outstr)
     print('Done.')
-    
-
-    
 
     
 
