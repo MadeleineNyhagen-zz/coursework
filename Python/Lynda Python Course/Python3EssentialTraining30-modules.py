@@ -3,14 +3,18 @@
 # This is an exercise file from Python 3 Essential Training on lynda.com
 # Copyright 2010 The BearHeart Group, LLC
 
-# find documentation on python modules here:
+# find documentation on standard python modules here:
 # http://docs.python.org/py3k/library/index.html under the python runtime services heading
+# repository of modules written by other people:
+# http://pypi.python.org/pypi
+
 
 import sys
 
 def main():
-    print('Python version {}.{}.{}'.format(*sys.version_info))
-    print(sys.platform)
+##    # the sys module
+##    print('Python version {}.{}.{}'.format(*sys.version_info))
+##    print(sys.platform)
 
 ##    # the os module
 ##    import os
@@ -39,10 +43,15 @@ def main():
 ##    random.shuffle(x)
 ##    print(x)
 
-    # the datetime module
-    import datetime
-    now = datetime.datetime.now()
-    print(now)
-    print(now.year, now.month, now.day, now.hour, now.minute, now.second, now.microsecond)
+##    # the datetime module
+##    import datetime
+##    now = datetime.datetime.now()
+##    print(now)
+##    print(now.year, now.month, now.day, now.hour, now.minute, now.second, now.microsecond)
+
+##    # the bitstring module
+##    import bitstring
+##    a = bitstring.BitString(bin = '01010101')
+##    print(a.hex, a.bin, a.uint)
 
 if __name__ == "__main__": main()
