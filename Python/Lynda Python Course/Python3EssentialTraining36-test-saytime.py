@@ -4,7 +4,7 @@
 # Copyright 2010 The BearHeart Group, LLC
 
 import saytime
-import unittest
+import unittest # unittest module is useful for testing code
 
 class TestSaytime(unittest.TestCase):
     def setUp(self):
