@@ -21,10 +21,10 @@ def begin(apples, gold):
         if play == "y":
             print "Ok!"
             begin(0,0)
-        if play == "n":
+        else:
             print "Goodbye."
-        
-            
+            return
+         
     pick = raw_input("Do you want to pick an apple? (y/n) ")
     if pick == "y":
         time.sleep(1)
@@ -33,7 +33,7 @@ def begin(apples, gold):
         if apples == 1:
             print "You have 1 apple."
             begin(apples, gold)
-        if apples != 1:
+        else:
             print "You have {} apples!".format(apples)
             begin(apples, gold)
     if pick == "n":
@@ -41,14 +41,14 @@ def begin(apples, gold):
         if sell == "y":
             if apples == 0:
                 print "You have no apples to sell!"
-            if apples == 1:
+            elif apples == 1:
                 print "You currently have {} apple.".format(apples)
                 print "You have sold your apple."
                 gold = gold + (apples*10)
                 apples = 0
                 print "you now have {} gold!".format(gold)
                 begin(apples, gold)
-            if apples > 1:
+            else:
                 print "You currently have {} apples.".format(apples)
                 print "You have sold your apples."
                 gold = gold + (apples*10)
