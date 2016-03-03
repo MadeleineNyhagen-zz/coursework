@@ -38,6 +38,16 @@ class windowClass(wx.Frame):
         if yesNoAnswer == wx.ID_NO:
             userName = 'Loser!'
 
+
+        chooseOneBox = wx.SingleChoiceDialog(None, 'What is your favorite color?',
+                                             'Color Question', ['Green','Red','Blue','Yellow'])
+        if chooseOneBox.ShowModal() == wx.ID_OK:
+            favColor = chooseOneBox.GetStringSelection()
+
+
+
+        
+
         self.SetTitle('Welcome ' + userName)
         self.Show(True)
 
