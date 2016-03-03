@@ -14,13 +14,27 @@ class windowClass(wx.Frame):
         
         fileButton = wx.Menu()
         editButton = wx.Menu()
+        importItem = wx.Menu() # creating a submenu
+
+        importItem.Append(wx.ID_ANY, 'Import Document...') # submenu
+        importItem.Append(wx.ID_ANY, 'Import Picture...') # submenu
+        importItem.Append(wx.ID_ANY, 'Import Video...') # submenu
+
+        fileButton.AppendMenu(wx.ID_ANY, 'Import', importItem) # submenu
+
+        toolBar = self.CreateToolBar() # creating toolbar
+        quitToolButton = toolBar.AddLabelTool(wx.ID_ANY, 'Quit', wx.Bitmap('maru2.gif')) # toolbar
+
+        importToolButton = toolBar.AddLabelTool(wx.ID_ANY, 'Import', wx.Bitmap('maru3.gif'))
+
+        toolBar.Realize() # toolbar
+        self.Bind(wx.EVT_TOOL, self.Quit, quitToolButton) # adding quit function to maru picture quit button
+        
 
         # exitItem = fileButton.Append(wx.ID_EXIT, 'Exit', 'Exit the program')
         exitItem = wx.MenuItem(fileButton, wx.ID_EXIT, 'Quit\tCtrl+Q')
         exitItem.SetBitmap(wx.Bitmap('maru.gif'))
         fileButton.AppendItem(exitItem)
-
-        
 
         
         menuBar.Append(fileButton, 'File')
@@ -70,7 +84,7 @@ class windowClass(wx.Frame):
 
 def main():
     app = wx.App()
-    windowClass(None)
+    windowClass(None, size =(500,500))
 
     app.MainLoop()
 
