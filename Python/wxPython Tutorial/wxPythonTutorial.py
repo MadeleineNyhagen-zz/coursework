@@ -33,7 +33,6 @@ class windowClass(wx.Frame):
         yesNoAnswer = yesNoBox.ShowModal() # stores answer to yesNoBox
         yesNoBox.Destroy()
 
-        wx.TextCtrl(panel, pos=(10, 10), size=(250, 150))
 
         if yesNoAnswer == wx.ID_NO:
             userName = 'Loser!'
@@ -45,7 +44,15 @@ class windowClass(wx.Frame):
             favColor = chooseOneBox.GetStringSelection()
 
 
+        wx.TextCtrl(panel, pos=(3, 100), size=(150, 50))
 
+        aweText = wx.StaticText(panel, -1, "Awesome Text", (3,3))
+        aweText.SetForegroundColour('#67cddc')
+        aweText.SetBackgroundColour('black')
+
+        rlyAweText = wx.StaticText(panel, -1, "Customized Awesomeness", (3,30))
+        rlyAweText.SetForegroundColour(favColor)
+        rlyAweText.SetBackgroundColour('black')
         
 
         self.SetTitle('Welcome ' + userName)
