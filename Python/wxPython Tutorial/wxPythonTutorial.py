@@ -1,3 +1,5 @@
+# made while following along with the tutorial series here: https://www.youtube.com/playlist?list=PLQVvvaa0QuDc4SQhfpm6XHO0l-1Ybtur2
+
 import wx
 
 class windowClass(wx.Frame):
