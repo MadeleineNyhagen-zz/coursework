@@ -4,16 +4,38 @@ class windowClass(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(windowClass, self).__init__(*args, **kwargs)
 
+        self.basicGUI()
 
-        # self.Move((250,250)) # to change the location where the window appears
+    def basicGUI(self):
 
-
-        self.Center() # to make the window appear in the center of the screen
+        panel = wx.Panel(self)
         
-        self.Show() # to make the window pop up
+        menuBar = wx.MenuBar()
+        
+        fileButton = wx.Menu()
+        editButton = wx.Menu()
 
+        exitItem = fileButton.Append(wx.ID_EXIT, 'Exit', 'Exit the program')
 
-app = wx.App()
-windowClass(None, title='epic window!')
-app.MainLoop()
+        menuBar.Append(fileButton, 'File')
+        menuBar.Append(editButton, 'Edit')
 
+        self.SetMenuBar(menuBar)
+        self.Bind(wx.EVT_MENU, self.Quit, exitItem)
+
+        wx.TextCtrl(panel, pos=(10, 10), size=(250, 150))
+
+        self.SetTitle('Epic Window')
+        self.Show(True)
+
+    def Quit(self, e):
+        self.Close()
+
+def main():
+    app = wx.App()
+    windowClass(None)
+
+    app.MainLoop()
+
+    
+main()
