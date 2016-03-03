@@ -16,16 +16,29 @@ class windowClass(wx.Frame):
         editButton = wx.Menu()
 
         exitItem = fileButton.Append(wx.ID_EXIT, 'Exit', 'Exit the program')
-
         menuBar.Append(fileButton, 'File')
         menuBar.Append(editButton, 'Edit')
 
         self.SetMenuBar(menuBar)
         self.Bind(wx.EVT_MENU, self.Quit, exitItem)
 
+
+        nameBox = wx.TextEntryDialog(None, 'What is your name?', 'Welcome', 'name')
+
+        if nameBox.ShowModal()==wx.ID_OK:
+            userName = nameBox.GetValue()
+
+
+        yesNoBox = wx.MessageDialog(None, 'Do you enjoy wxPython?', 'Question',wx.YES_NO)
+        yesNoAnswer = yesNoBox.ShowModal() # stores answer to yesNoBox
+        yesNoBox.Destroy()
+
         wx.TextCtrl(panel, pos=(10, 10), size=(250, 150))
 
-        self.SetTitle('Epic Window')
+        if yesNoAnswer == wx.ID_NO:
+            userName = 'Loser!'
+
+        self.SetTitle('Welcome ' + userName)
         self.Show(True)
 
     def Quit(self, e):
