@@ -10,26 +10,32 @@ class Feedback:
     def __init__(self, master):    
 
         self.frame_header = ttk.Frame(master)
+        self.frame_header.pack()
 
         self.logo = PhotoImage(file = 'tour_logo.gif')
-        ttk.Label(self.frame_header, image = self.logo)
-        ttk.Label(self.frame_header, text = 'Thanks for Exploring!')
-        ttk.Label(self.frame_header, text = ("We're glad you chose Explore California for your recent adventure. ",
-                                             "Please tell us what you thought about the 'Desert to Sea tour."))
+        ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0, rowspan = 2) # this can added directly to the grid because
+        # we're not placing it in a variable
+        ttk.Label(self.frame_header, text = 'Thanks for Exploring!').grid(row = 0, column = 1)
+        ttk.Label(self.frame_header, wraplength = 300, text = ("We're glad you chose Explore California for your recent adventure. "
+                                                               "Please tell us what you thought about the 'Desert to Sea tour.")).grid(row = 1, column = 1)
                                              
         self.frame_content = ttk.Frame(master)
+        self.frame_content.pack()
 
-        ttk.Label(self.frame_content, text = 'Name:')
-        ttk.Label(self.frame_content, text = 'Email:')
-        ttk.Label(self.frame_content, text = 'Comments:')
+        ttk.Label(self.frame_content, text = 'Name:').grid(row = 0, column = 0, padx = 5, stick = 'sw')
+        ttk.Label(self.frame_content, text = 'Email:').grid(row = 0, column = 1, padx = 5, stick = 'sw')
+        ttk.Label(self.frame_content, text = 'Comments:').grid(row = 2, column = 0, padx = 5, stick = 'sw')
 
         self.entry_name = ttk.Entry(self.frame_content, width = 24)
         self.entry_email = ttk.Entry(self.frame_content, width = 24)
-
         self.text_comments = Text(self.frame_content, width = 50, height = 10)
 
-        ttk.Button(self.frame_content, text = 'Submit')
-        ttk.Button(self.frame_content, text = 'Clear')
+        self.entry_name.grid(row = 1, column = 0, padx = 5)
+        self.entry_email.grid(row = 1, column = 1, padx = 5)
+        self.text_comments.grid(row = 3, column = 0, columnspan = 2, padx = 5)
+
+        ttk.Button(self.frame_content, text = 'Submit').grid(row = 4, column = 0, padx = 5, stick = 'e')
+        ttk.Button(self.frame_content, text = 'Clear').grid(row = 4, column = 1, padx = 5, stick = 'w')
 
             
 def main():            
