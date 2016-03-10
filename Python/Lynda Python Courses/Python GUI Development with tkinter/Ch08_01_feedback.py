@@ -4,6 +4,7 @@
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 
 class Feedback:
 
@@ -34,9 +35,20 @@ class Feedback:
         self.entry_email.grid(row = 1, column = 1, padx = 5)
         self.text_comments.grid(row = 3, column = 0, columnspan = 2, padx = 5)
 
-        ttk.Button(self.frame_content, text = 'Submit').grid(row = 4, column = 0, padx = 5, stick = 'e')
-        ttk.Button(self.frame_content, text = 'Clear').grid(row = 4, column = 1, padx = 5, stick = 'w')
+        ttk.Button(self.frame_content, text = 'Submit', command = self.submit).grid(row = 4, column = 0, padx = 5, stick = 'e')
+        ttk.Button(self.frame_content, text = 'Clear', command = self.clear).grid(row = 4, column = 1, padx = 5, stick = 'w')
 
+    def submit(self):
+        print('Name: {}'.format(self.entry_name.get()))
+        print('Email: {}'.format(self.entry_email.get()))
+        print('Comments: {}'.format(self.text_comments.get(1.0, 'end')))
+        self.clear()
+        messagebox.showinfo(title = 'Explore California Feedback', message = 'Comments Submitted!')
+
+    def clear(self):
+        self.entry_name.delete(0, 'end')
+        self.entry_email.delete(0, 'end')
+        self.text_comments.delete(1.0, 'end')
             
 def main():            
     
