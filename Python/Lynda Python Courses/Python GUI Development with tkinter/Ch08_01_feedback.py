@@ -2,13 +2,27 @@
 # feedback_template.py by Barron Stone
 # This is an exercise file from Python GUI Development with Tkinter on lynda.com
 
+# tk documentation pages: http://www.tcl.tk/doc
+
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
 class Feedback:
 
-    def __init__(self, master):    
+    def __init__(self, master):
+
+        master.title('Explore California Feedback')
+        master.resizable(False, False)
+        master.configure(background = '#e1d8b9')
+
+        self.style = ttk.Style()
+        self.style.configure('TFrame', background = '#e1d8b9')
+        self.style.configure('TButton', background = '#e1d8b9')
+        self.style.configure('TLabel', background = '#e1d8b9', font = ('Arial',11))
+        self.style.configure('Header.TLabel', font = ('Arial',18, 'bold'))
+
+
 
         self.frame_header = ttk.Frame(master)
         self.frame_header.pack()
@@ -16,7 +30,7 @@ class Feedback:
         self.logo = PhotoImage(file = 'tour_logo.gif')
         ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0, rowspan = 2) # this can added directly to the grid because
         # we're not placing it in a variable
-        ttk.Label(self.frame_header, text = 'Thanks for Exploring!').grid(row = 0, column = 1)
+        ttk.Label(self.frame_header, text = 'Thanks for Exploring!', style = 'Header.TLabel').grid(row = 0, column = 1)
         ttk.Label(self.frame_header, wraplength = 300, text = ("We're glad you chose Explore California for your recent adventure. "
                                                                "Please tell us what you thought about the 'Desert to Sea tour.")).grid(row = 1, column = 1)
                                              
@@ -27,9 +41,9 @@ class Feedback:
         ttk.Label(self.frame_content, text = 'Email:').grid(row = 0, column = 1, padx = 5, stick = 'sw')
         ttk.Label(self.frame_content, text = 'Comments:').grid(row = 2, column = 0, padx = 5, stick = 'sw')
 
-        self.entry_name = ttk.Entry(self.frame_content, width = 24)
-        self.entry_email = ttk.Entry(self.frame_content, width = 24)
-        self.text_comments = Text(self.frame_content, width = 50, height = 10)
+        self.entry_name = ttk.Entry(self.frame_content, width = 24, font = ('Arial', 10))
+        self.entry_email = ttk.Entry(self.frame_content, width = 24, font = ('Arial', 10))
+        self.text_comments = Text(self.frame_content, width = 50, height = 10, font = ('Arial', 10))
 
         self.entry_name.grid(row = 1, column = 0, padx = 5)
         self.entry_email.grid(row = 1, column = 1, padx = 5)
