@@ -1,28 +1,36 @@
 from tkinter import *
-from phones  import *
+from phones import *
 
-def whichSelected () :
+
+
+def whichSelected():
     print ("At %s of %d" % (select.curselection(), len(phonelist)))
     return int(select.curselection()[0])
 
-def addEntry () :
+def addEntry():
     phonelist.append ([nameVar.get(), phoneVar.get()])
-    setSelect ()
+    setSelect()
 
-def updateEntry() :
+def updateEntry():
     phonelist[whichSelected()] = [nameVar.get(), phoneVar.get()]
-    setSelect ()
+    setSelect()
 
-def deleteEntry() :
+def deleteEntry():
     del phonelist[whichSelected()]
-    setSelect ()
+    setSelect()
 
-def loadEntry  () :
+def loadEntry():
     name, phone = phonelist[whichSelected()]
     nameVar.set(name)
     phoneVar.set(phone)
 
-def makeWindow () :
+def saveEntry(): # to save the edited phonelist
+    f = open('phones.py', 'w')
+    f.write(str("phonelist = {}".format(phonelist)))
+    f.close()
+##    print (str("phonelist = {}".format(phonelist)))
+    
+def makeWindow():
     global nameVar, phoneVar, select
     win = Tk()
 
@@ -45,8 +53,10 @@ def makeWindow () :
     b2 = Button(frame2,text="Update",command=updateEntry)
     b3 = Button(frame2,text="Delete",command=deleteEntry)
     b4 = Button(frame2,text=" Load ",command=loadEntry)
+    b5 = Button(frame2,text=" Save ",command=saveEntry)
     b1.pack(side=LEFT); b2.pack(side=LEFT)
     b3.pack(side=LEFT); b4.pack(side=LEFT)
+    b5.pack(side=LEFT)
 
     frame3 = Frame(win)       # select of names
     frame3.pack()
