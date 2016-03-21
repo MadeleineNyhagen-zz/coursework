@@ -84,14 +84,16 @@ class Frame(wx.Frame):
             shutil.move(path, self.destination)
             move = True
         if move:
+            # creates a message dialog telling user that files were transferred successfully
             dlg = wx.MessageDialog(None, 'Selected files have been successfully transferred.', 'File Transfer Complete', wx.OK)
             self.listOfFiles.DeleteAllItems()
         else:
+            # creates message dialog telling user no files were selected to transfer
             dlg = wx.MessageDialog(None, 'Please select files to transfer.', 'No Files Selected', wx.OK)
         dlg.ShowModal()
         dlg.Destroy()
         
-
+    # to close GUI:
 
     def exit(self, event):
         self.Destroy()
