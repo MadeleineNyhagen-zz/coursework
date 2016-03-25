@@ -8,5 +8,12 @@ def createTable():
         Time_Stamps(Time_Checked INTEGER);")
 
 def lastChecked():
-    lastCheck = conn.execute("SELECT MAX(Time_Checked) FROM Time_Stamps)
-        print "Date of last file check was: ",
+    lastCheck = conn.execute("SELECT MAX(Time_Checked) FROM Time_Stamps")
+    return "Date of last file check was: {}".format(lastCheck)
+
+def addTimeStamp(dt):
+    insertTime = "INSERT INTO Time_Stamps \
+        (Time_Checked) VALUES ({})".format(dt)
+    print insertTime
+    conn.execute(insertTime)
+    conn.commit
