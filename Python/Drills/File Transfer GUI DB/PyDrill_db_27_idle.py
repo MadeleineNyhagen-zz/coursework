@@ -1,4 +1,4 @@
-import wx, shutil, datetime, os
+import wx, shutil, datetime, os, PyDrill_db
 from datetime import datetime, timedelta
 
 class Frame(wx.Frame):
@@ -34,6 +34,8 @@ class Frame(wx.Frame):
 
         moveButton = wx.Button(panel, label="Move Selected Files", size=(200,30), pos=(50,240))
         moveButton.Bind(wx.EVT_BUTTON, self.moveModifiedFiles)
+
+        self.lastmovedate = wx.TextCtrl(panel, value=PyDrill_db.lastChecked(), size=(300,30), pos=(30,300), style=wx.TE_READONLY)
 
         cancelButton = wx.Button(panel,label="Cancel",size=(100,30),pos=(380,290))
         #bind button to the function self.exit
@@ -86,6 +88,8 @@ class Frame(wx.Frame):
         if move:
             # creates a message dialog telling user that files were transferred successfully
             dlg = wx.MessageDialog(None, 'Selected files have been successfully transferred.', 'File Transfer Complete', wx.OK)
+            PyDrill_db.addTimeStamp()
+            self.lastmovedate.SetValue(PyDrill_db.lastChecked())
             self.listOfFiles.DeleteAllItems()
         else:
             # creates message dialog telling user no files were selected to transfer
