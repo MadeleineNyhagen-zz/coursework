@@ -27,7 +27,7 @@ def lastChecked():
         timestamp = datetime.fromtimestamp(row[0])
 ##        print(timestamp)
 ##        print(row[0])
-        return "Last file check: {}".format(timestamp)
+    return(timestamp)
 
 def viewTable():
     vt = conn.execute("SELECT * FROM Time_Stamps")
@@ -37,7 +37,7 @@ def viewTable():
 
     
 #addTimeStamp()
-#lastChecked()
+lastChecked()
 #viewTable()
 
 ##d = datetime.utcnow()
