@@ -64,7 +64,8 @@ class Frame(wx.Frame):
     def compDates(self, filenames):
         recentMod = self.now - self.modDate(filenames)
         recentCreate = self.now - self.createDate(filenames)
-        if recentMod < PyDrill_db.lastChecked() or recentCreate < PyDrill_db.lastChecked():
+        lastMove = self.now - PyDrill_db.lastChecked()
+        if recentMod < lastMove or recentCreate < lastMove:
             return True
         else:
             return False
@@ -89,7 +90,7 @@ class Frame(wx.Frame):
             # creates a message dialog telling user that files were transferred successfully
             dlg = wx.MessageDialog(None, 'Selected files have been successfully transferred.', 'File Transfer Complete', wx.OK)
             PyDrill_db.addTimeStamp()
-            self.lastmovedate.SetValue(PyDrill_db.lastChecked())
+            self.lastmovedate.SetValue(str(PyDrill_db.lastChecked()))
             self.listOfFiles.DeleteAllItems()
         else:
             # creates message dialog telling user no files were selected to transfer

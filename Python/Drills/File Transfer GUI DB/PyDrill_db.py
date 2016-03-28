@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+from datetime import timedelta
 import calendar
 
 # connect to timestamp database
@@ -25,7 +26,7 @@ def lastChecked():
     lastcheck = conn.execute("SELECT MAX(Time_Checked) FROM Time_Stamps")
     for row in lastcheck:
         timestamp = datetime.fromtimestamp(row[0])
-##        print(timestamp)
+        #print(timestamp)
 ##        print(row[0])
     return(timestamp)
 
@@ -37,7 +38,8 @@ def viewTable():
 
     
 #addTimeStamp()
-lastChecked()
+#print(datetime.now()-lastChecked())
+#lastChecked()
 #viewTable()
 
 ##d = datetime.utcnow()
