@@ -73,6 +73,7 @@ class Frame(wx.Frame):
     # to list recently created or modified files:
 
     def getModifiedFiles(self, event):
+        self.listOfFiles.DeleteAllItems()
         for files in os.listdir(self.source):
             path = self.source + "/" + files
             if self.compDates(path):
