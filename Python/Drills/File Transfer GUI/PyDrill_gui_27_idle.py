@@ -21,16 +21,23 @@ class Frame(wx.Frame):
         menuBar.Append(fileMenu, "File")
         menuBar.Append(editMenu, "Edit")
 
+        #setting the source directory:
         wx.StaticText(panel, label='Select a source directory:', pos=(30,30))
-        self.findFile = wx.DirPickerCtrl(panel, path='C:/Users/stud/Desktop/A',message='Choose a file to move', pos=(50,60))
-        self.source = (self.findFile.GetPath())
+        self.findFile = wx.DirPickerCtrl(panel, path='C:/Users/stud/Desktop/A',message='Choose a file to move',
+                                         pos=(50,60), style=wx.DIRP_USE_TEXTCTRL | wx.DIRP_CHANGE_DIR)
+        #self.findFile = wx.DirDialog(panel,message='Choose a file to move', pos=(50,60))    
+        #self.findFile.SetInitialDirectory('C:/Users/stud/Desktop/A')
+        self.source = (self.findFile.GetTextCtrlValue())
+        
 
         checkButton = wx.Button(panel, label="Check For Modified Files", size=(200,30), pos=(50,100))
         checkButton.Bind(wx.EVT_BUTTON, self.getModifiedFiles)
 
+        #setting the destination directory:
         wx.StaticText(panel, label='Select a destination directory:', pos=(30,170))
-        self.moveFileTo = wx.DirPickerCtrl(panel, path='C:/Users/stud/Desktop/B', message='Choose a folder to which to move files:', pos=(50,200))
-        self.destination = (self.moveFileTo.GetPath())
+        self.moveFileTo = wx.DirPickerCtrl(panel, path='C:/Users/stud/Desktop/B', message='Choose a folder to which to move files:',
+                                           pos=(50,200), style=wx.DIRP_USE_TEXTCTRL | wx.DIRP_CHANGE_DIR)
+        self.destination = (self.moveFileTo.GetTextCtrlValue())
 
         moveButton = wx.Button(panel, label="Move Selected Files", size=(200,30), pos=(50,240))
         moveButton.Bind(wx.EVT_BUTTON, self.moveModifiedFiles)
@@ -70,6 +77,8 @@ class Frame(wx.Frame):
     # to list recently created or modified files:
 
     def getModifiedFiles(self, event):
+        print(self.source)
+        self.listOfFiles.DeleteAllItems()
         for files in os.listdir(self.source):
             path = self.source + "/" + files
             if self.compDates(path):
