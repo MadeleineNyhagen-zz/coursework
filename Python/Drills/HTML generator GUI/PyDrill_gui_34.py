@@ -3,15 +3,34 @@
 # adapting my html generator script to be editable via a gui
 
 from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
 
-f = open("summersale.html","w")
+class HTMLEditor:
 
-htmltext = '''<html>
-<body>
-Stay tuned for our amazing summer sale!
-</body>
-</html>
-'''
+    def __init__(self, master):
 
-f.write(htmltext)
-f.close()
+        master.title('Edit the sale page! What should it say?')
+
+
+
+        self.f = open("summersale.html","w")
+
+        self.htmltext = '''<html>
+        <body>
+        Stay tuned for our amazing summer sale!
+        </body>
+        </html>
+        '''
+
+    def savebodytext(self):
+        f.write(self.htmltext)
+        f.close()
+
+
+def main():
+    root = Tk()
+    htmleditor = HTMLEditor(root)
+    root.mainloop()
+
+if __name__ == "__main__": main()
