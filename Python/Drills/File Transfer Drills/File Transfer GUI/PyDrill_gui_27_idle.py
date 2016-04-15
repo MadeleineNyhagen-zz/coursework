@@ -28,6 +28,7 @@ class Frame(wx.Frame):
         #self.findFile = wx.DirDialog(panel,message='Choose a file to move', pos=(50,60))    
         #self.findFile.SetInitialDirectory('C:/Users/stud/Desktop/A')
         self.source = (self.findFile.GetTextCtrlValue())
+        print(self.source)
         
 
         checkButton = wx.Button(panel, label="Check For Modified Files", size=(200,30), pos=(50,100))
