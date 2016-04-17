@@ -5,6 +5,9 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+import HTMLdb
+import webbrowser
+import os
 
 class HTMLEditor:
 
@@ -74,27 +77,66 @@ class HTMLEditor:
         self.body_text = Text(self.frame_content, height = 20, width = 30, font = ('Helvetica',10))
         self.body_text.grid(row = 0, column = 7, rowspan = 5, columnspan = 3, padx = 5, pady = 5, stick = 'nw')
 
-        ttk.Button(self.frame_content, text = 'Submit', command = self.savebodytext).grid(row = 6, column = 2, padx = 5, pady = 5, stick = 'nw')
-        ttk.Button(self.frame_content, text = 'Cancel', command = self.exitgui).grid(row = 6, column = 3, padx = 5, pady = 5, stick = 'ne')
+        ttk.Button(self.frame_content, text = 'Select', command = self.select).grid(row = 6, column = 2, padx = 5, pady = 5, stick = 'nw')
+        ttk.Button(self.frame_content, text = 'Save', command = self.saveBodyText).grid(row = 6, column = 3, padx = 5, pady = 5, stick = 'ne')
+        ttk.Button(self.frame_content, text = 'Publish', command = self.publish).grid(row = 6, column = 7, padx = 5, pady = 5, stick = 'nw')
+        ttk.Button(self.frame_content, text = 'Cancel', command = self.exitGui).grid(row = 6, column = 8, padx = 5, pady = 5, stick = 'ne')
 
 
 
-    def savebodytext(self):
-        textinput = self.body_text.get(1.0, 'end')
-        f = open("summersale.html","w")
+    def populateListbox(self):
+        for item in HTMLdb.displayAll():
+            # itemnumber = str(item[0])
+            name = item[1]
+            self.name_list.insert(END, name)
+
+    def clearListbox(self):
+        self.name_list.delete(0, END)
+
+    def saveBodyText(self):
+        title = self.name_entry.get(1.0, 'end')
+        content = self.body_text.get(1.0, 'end')
+        HTMLdb.newPage(title, content)
+        self.clearListbox()
+        self.populateListbox()
+
+    def select(self):
+        titlelist = self.name_list.curselection()
+        self.body_text.delete(1.0, END)
+
+        for item in titlelist:
+            title = str(self.name_list.get(item))
+            page = HTMLdb.displayItem(title)
+            for item in page:
+                i = item[0]
+                self.body_text.insert(END, i)
+
+##        #not sure whether it's better to use nested for loops, or just access index 0 like so:
+##
+##        title = self.name_list.get(titlelist[0])
+##        content = HTMLdb.displayItem(title)[0]
+##        self.body_text.insert(END, content[0])
+
+
+
+    def publish(self):
+        content = self.body_text.get(1.0, 'end')
+        filename = "summersale.html"
+        f = open(filename,"w")
 
         htmltext = '''<html>
     <body>
     {}
     </body>
 </html>
-        '''.format(textinput)
+        '''.format(content)
         f.write(htmltext)
         f.close()
 
         print(htmltext)
+        webbrowser.open('file://' + os.path.realpath(filename))
 
-    def exitgui(self):
+    def exitGui(self):
         root.destroy()
 
 
@@ -105,6 +147,7 @@ class HTMLEditor:
 
 root = Tk()
 htmleditor = HTMLEditor(root)
+htmleditor.populateListbox()
 root.mainloop()
 
 # if __name__ == "__main__": main()

@@ -27,12 +27,23 @@ def newPage(title, content):
 
 # newPage('test', 'this is the body')
 
+def displayItem(title):
+    select = "SELECT Content FROM bodytext WHERE Title = '{}';".format(title)
+    #select = "SELECT Content FROM bodytext WHERE Title = 'test';"
+    #select = "SELECT Content FROM bodytext;"
+    display = cursor.execute(select)
+    rows = display.fetchall()
+    return rows
+    print(rows)
+
+
 def displayAll():
-    select = "SELECT * FROM bodytext"
+    select = "SELECT * FROM bodytext;"
     display = cursor.execute(select)
     rows = display.fetchall()
     return rows
 
-for item in displayAll():
-    print(item)
+##for item in displayAll():
+##    print(item)
     
+#displayItem(title)
