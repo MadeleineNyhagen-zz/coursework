@@ -81,7 +81,7 @@ class HTMLEditor:
         # buttons
 ##        decided against a select button in favor of just binding the select method directly to the Listbox
 ##        ttk.Button(self.frame_content, text = 'Select', command = self.select).grid(row = 6, column = 0, padx = 5, pady = 5, stick = 'nw')
-        ttk.Button(self.frame_content, text = 'Update').grid(row = 6, column = 0, padx = 5, pady = 5, stick = 'n')
+        ttk.Button(self.frame_content, text = 'Update', command = self.updateItem).grid(row = 6, column = 0, padx = 5, pady = 5, stick = 'n')
         ttk.Button(self.frame_content, text = 'Delete', command = self.deleteItem).grid(row = 6, column = 1, padx = 5, pady = 5, stick = 'n')
         ttk.Button(self.frame_content, text = 'Save', command = self.saveBodyText).grid(row = 6, column = 3, padx = 5, pady = 5, stick = 'n')
         ttk.Button(self.frame_content, text = 'Publish', command = self.publish).grid(row = 6, column = 4, padx = 5, pady = 5, stick = 'n')
@@ -108,6 +108,11 @@ class HTMLEditor:
     def clearListbox(self):
         self.name_list.delete(0, END)
 
+    # to clear the input boxes
+    def clearTextboxes(self):
+        self.body_text.delete(1.0, 'end')
+        self.name_entry.delete(1.0, 'end')        
+
     # to add new page to database
     def saveBodyText(self):
         title = self.name_entry.get(1.0, 'end')
@@ -121,6 +126,7 @@ class HTMLEditor:
                     # save the page
                     HTMLdb.newPage(title, content)
                     self.clearListbox()
+                    self.clearTextboxes()
                     self.populateListbox()
                 else:
                     # tell user they're trying to use a pre-existing title
@@ -152,11 +158,16 @@ class HTMLEditor:
         title = self.name_list.get(item)
         HTMLdb.deletePage(title)
         self.clearListbox()
+        self.clearTextboxes()
         self.populateListbox()
         
-        
-        
-
+    # to update the content of an existing database entry    
+    def updateItem(self):
+        titlelist = self.name_list.curselection()
+        item = titlelist[0]
+        title = self.name_list.get(item)
+        content = self.body_text.get(1.0, 'end')
+        HTMLdb.updatePage(title, content)
 
     # to display a page's body when the title is selected in the listbox
     def select(self, evt):
@@ -178,6 +189,7 @@ class HTMLEditor:
 
 
     def publish(self):
+##        self.saveBodyText()
         content = self.body_text.get(1.0, 'end')
         filename = "summersale.html"
         f = open(filename,"w")

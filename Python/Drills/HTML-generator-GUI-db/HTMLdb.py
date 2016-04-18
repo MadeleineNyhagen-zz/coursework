@@ -37,8 +37,7 @@ def deletePage(title):
 # to update a record
 def updatePage(title, body):
     cursor.execute("UPDATE bodytext SET Content = '{}' WHERE Title = '{}'".format(body, title))
-    
-                   
+    db.commit()                   
 
 # to return content
 def displayItem(title):
