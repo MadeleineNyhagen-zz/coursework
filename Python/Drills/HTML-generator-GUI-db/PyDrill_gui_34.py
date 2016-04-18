@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 # adapting my html generator script to be editable via a gui
 
 from tkinter import *
@@ -61,49 +60,108 @@ class HTMLEditor:
         self.name_label.grid(row = 0, column = 0, columnspan = 2, padx = 5, pady = 5, stick = 'ne')
         # text entry
         self.name_entry = Text(self.frame_content, height = 1, width = 30, font = ('Helvetica',10))
-        self.name_entry.grid(row = 0, column = 2, rowspan = 1, columnspan= 3, padx = 1, pady = 5, stick = 'nw')
-
+        self.name_entry.grid(row = 1, column = 0, rowspan = 1, columnspan= 3, padx = 5, pady = 5, stick = 'nw')
         # adding the listbox to contain names of various page versions
-        self.name_list = Listbox(self.frame_content, height = 17, width = 30, font = ('Helvetica',10))
-        self.name_list.grid(row = 1, column = 2, columnspan = 3, rowspan = 4, padx = 1, pady = 1, stick = 'nw')
+        self.name_list = Listbox(self.frame_content, height = 16, width = 30, font = ('Helvetica',10))
+        self.name_list.grid(row = 2, column = 0, columnspan = 3, rowspan = 4, padx = 5, pady = 5, stick = 'nw')
+        self.name_list.bind('<<ListboxSelect>>', self.select)
+        # adding a scrollbar to the listbox
+        
 
         
 
         # adding the body text entry box
-        #label
+        # label
         self.body_label = ttk.Label(self.frame_content, width = 20, text = 'Body Text: ')
-        self.body_label.grid(row = 0, column = 5, columnspan = 2, stick = 'ne')
+        self.body_label.grid(row = 0, column = 3, columnspan = 2, stick = 'ne')
         # text entry
-        self.body_text = Text(self.frame_content, height = 20, width = 30, font = ('Helvetica',10))
-        self.body_text.grid(row = 0, column = 7, rowspan = 5, columnspan = 3, padx = 5, pady = 5, stick = 'nw')
+        self.body_text = Text(self.frame_content, height = 19, width = 40, font = ('Helvetica',10))
+        self.body_text.grid(row = 1, column = 3, rowspan = 5, columnspan = 4, padx = 10, pady = 5, stick = 'nw')
+        
+        # buttons
+##        decided against a select button in favor of just binding the select method directly to the Listbox
+##        ttk.Button(self.frame_content, text = 'Select', command = self.select).grid(row = 6, column = 0, padx = 5, pady = 5, stick = 'nw')
+        ttk.Button(self.frame_content, text = 'Update').grid(row = 6, column = 0, padx = 5, pady = 5, stick = 'n')
+        ttk.Button(self.frame_content, text = 'Delete', command = self.deleteItem).grid(row = 6, column = 1, padx = 5, pady = 5, stick = 'n')
+        ttk.Button(self.frame_content, text = 'Save', command = self.saveBodyText).grid(row = 6, column = 3, padx = 5, pady = 5, stick = 'n')
+        ttk.Button(self.frame_content, text = 'Publish', command = self.publish).grid(row = 6, column = 4, padx = 5, pady = 5, stick = 'n')
+        ttk.Button(self.frame_content, text = 'Cancel', command = self.exitGui).grid(row = 6, column = 5, padx = 5, pady = 5, stick = 'n')
 
-        ttk.Button(self.frame_content, text = 'Select', command = self.select).grid(row = 6, column = 2, padx = 5, pady = 5, stick = 'nw')
-        ttk.Button(self.frame_content, text = 'Save', command = self.saveBodyText).grid(row = 6, column = 3, padx = 5, pady = 5, stick = 'ne')
-        ttk.Button(self.frame_content, text = 'Publish', command = self.publish).grid(row = 6, column = 7, padx = 5, pady = 5, stick = 'nw')
-        ttk.Button(self.frame_content, text = 'Cancel', command = self.exitGui).grid(row = 6, column = 8, padx = 5, pady = 5, stick = 'ne')
 
-
-
+    # to check whether you're using a pre-existing title        
+    
+    def sameName(self):
+        title = self.name_entry.get(1.0, 'end')
+        if HTMLdb.findTitle(title):
+            return True
+        else:
+            return False
+        
+    # to list existing titles in listbox
     def populateListbox(self):
         for item in HTMLdb.displayAll():
             # itemnumber = str(item[0])
             name = item[1]
             self.name_list.insert(END, name)
 
+    # to clear the listbox
     def clearListbox(self):
         self.name_list.delete(0, END)
 
+    # to add new page to database
     def saveBodyText(self):
         title = self.name_entry.get(1.0, 'end')
         content = self.body_text.get(1.0, 'end')
-        HTMLdb.newPage(title, content)
+        # check that title input isn't empty
+        if title != '\n':
+            # check that body input isn't empty
+            if content != '\n':
+                # check that title doesn't already exist in database
+                if self.sameName() == False:
+                    # save the page
+                    HTMLdb.newPage(title, content)
+                    self.clearListbox()
+                    self.populateListbox()
+                else:
+                    # tell user they're trying to use a pre-existing title
+                    messagebox.showwarning(
+                        'Title already in use',
+                        '{} already exists. Rename your page \n or delete the previous entry'.format(title.strip().capitalize())
+                        )
+            # tell user they need to add content
+            else:
+                messagebox.showwarning(
+                            'No content',
+                            'Please add body content before saving'
+                            )
+        # if title input is empty, check if body input is also empty
+        elif content == '\n':
+            # if so, do nothing
+            return
+        # tell user to title their page
+        else:
+            messagebox.showwarning(
+                        'No title',
+                        'Please title this page.'
+                        )
+
+    # to delete the selected list item from the database
+    def deleteItem(self):
+        titlelist = self.name_list.curselection()
+        item = titlelist[0]
+        title = self.name_list.get(item)
+        HTMLdb.deletePage(title)
         self.clearListbox()
         self.populateListbox()
+        
+        
+        
 
-    def select(self):
+
+    # to display a page's body when the title is selected in the listbox
+    def select(self, evt):
         titlelist = self.name_list.curselection()
         self.body_text.delete(1.0, END)
-
         for item in titlelist:
             title = str(self.name_list.get(item))
             page = HTMLdb.displayItem(title)
