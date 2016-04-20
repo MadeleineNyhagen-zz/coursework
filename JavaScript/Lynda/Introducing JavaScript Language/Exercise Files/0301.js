@@ -16,7 +16,7 @@ notEmptyObject;
 var animal = {
 	'genus' : 'bird',
 	'species' : 'raven',
-	'callType' : 'squawky', // there is a deliberate bug here in the course, removed for your convenience :)
+	'callType' : 'squawky',
 	'quote' : 'Nevermore',
 	'maxOffspring' : 5,
 	'noisy' : true,
