@@ -32,7 +32,7 @@ while(true) {
 
 var myArray = [true, true, true, false, true, true];
 
-var myItem = false;
+var myItem = false; // use a do while loop to ensure that everything in the curly braces is executed at least once:
 do {
 	console.log('myArray has ' + myArray.length + ' items now. This loop will go until we pop a false.');
 	myItem = myArray.pop();
