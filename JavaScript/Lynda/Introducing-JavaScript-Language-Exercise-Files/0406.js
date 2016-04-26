@@ -25,13 +25,16 @@ if (cryAboutIt) {
 	console.log('Child says: WAAAAAAAAAAAAAAAAAAAAAAAAA!');
 }
 
+if (!cryAboutIt) {
+	console.log('Child says: HOORAY!')
+}
 
 var animal = 'cat';
 // animal = 'dog';
 
-animal === 'cat' ? console.log('You will be a cat herder.') : console.log('You will be a dog catcher.');
+animal === 'cat' ? console.log('You will be a cat herder.') : console.log('You will be a dog catcher.'); // a terser approach to if else
 
-var job = (animal === 'cat' ? 'cat herder' : 'dog catcher');
+var job = (animal === 'cat' ? 'cat herder' : 'dog catcher'); // also terse
 
 // More info:
 // https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Statements#if...else_Statement
