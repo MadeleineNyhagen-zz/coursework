@@ -1,12 +1,12 @@
-2 + 5;
-4 - 3;
+2 + 5; // add
+4 - 3; // subtract
 5 - 9;
-3 * 5;
-36 / 6;
+3 * 5; // multiply
+36 / 6; // divide
 36 / 5;
 
-20 % 2;
-19 % 2;
+20 % 2; // modulo returns the remainder of 20 divided by 2, good for determining whether
+19 % 2; // a variable is even or odd
 
 var counter = 0;
 counter = counter + 1;
