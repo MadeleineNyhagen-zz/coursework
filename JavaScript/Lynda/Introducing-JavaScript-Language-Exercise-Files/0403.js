@@ -26,5 +26,8 @@ animal1 === 'monkey' && animal2 === 'bear'; // true
 
 !(animal1 === 'monkey' && animal2 === 'bear'); // false
 
+// in JavaScript, operator precedence means that && (and) will always be evaluated before || (or)
+// but using parentheses can eliminate any doubts about how a statement will evaluate
+
 // More info:
 // https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Expressions_and_Operators#Logical_operators
