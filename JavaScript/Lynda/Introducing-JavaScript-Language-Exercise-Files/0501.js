@@ -1,5 +1,5 @@
-for (var i = 0; i < 10; i += 1) {
-	console.log(i);
+for (var i = 0; i < 10; i += 1) { // initializing a variable; establishing a condition under which we'll stop looping; establishing progression 
+	console.log(i); // what should happen every time the loop runs
 }
 
 // very common use case: looping over an array.
