@@ -1,6 +1,6 @@
 // iterate over an array
 var pageNames = ['Home', 'About Us', 'Contact Us', 'JavaScript Playground', 'News', 'Blog'];
-for (var p in pageNames) {
+for (var p in pageNames) { // generally not recommended to use a for in loop with arrays, because it doesn't always return the items from the array in order
 	console.log(p + ' is ' + pageNames[p]);
 }
 
@@ -13,7 +13,7 @@ var pages = {
 	'fifth' : 'Blog',
 };
 for (var p in pages) {
-	if (pages.hasOwnProperty(p)) {
+	if (pages.hasOwnProperty(p)) { // hasOwnProperty prevents you from accidentally enumerating over an inherited property
 		console.log(p + ' is ' + pages[p]);
 	}
 }
