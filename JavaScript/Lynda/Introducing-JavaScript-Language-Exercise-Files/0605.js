@@ -1,10 +1,10 @@
-function speakSomething (what) {
+function speakSomething (what) { // functions are objects in JavaScript
 	for (var i = 0; i < 10; i += 1) {
 		console.log(what);
 	}
 }
 
-var speakSomething = function(what) {
+var speakSomething = function(what) { // an anonymous function as object value
 	for (var i = 0; i < 10; i += 1) {
 		console.log(what);
 	}
