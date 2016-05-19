@@ -1,2 +1,11 @@
+# Python
 *.pyc
+
+# JavaScript
 *jquery-1.12.3.min.js
+
+# C# and Visual Studio
+*.suo
+*.user
+*.dll
+*.exe
