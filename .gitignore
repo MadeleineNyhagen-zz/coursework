@@ -9,4 +9,7 @@
 *.user
 *.dll
 *.exe
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 .vs/
