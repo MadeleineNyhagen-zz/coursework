@@ -21,6 +21,8 @@ namespace Program1
             Console.Read();
 
             // to insert a code snippet, press ctrl+k and then ctrl+x, use tab to navigate the ensuing menu and enter to select the desired snippet
+            // or, if you have the code snippet shortcut, i.e. 'cw', memorized you can type that and then hit tab twice
+            // use ctrl+k and ctrl+s together to wrap a highlighted piece of code in a snippet
         }
     }
 }
